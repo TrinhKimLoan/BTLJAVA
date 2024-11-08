@@ -1,13 +1,20 @@
 package last.Game;
 
+import last.Player.Player;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Game {
-    public static void PlayGame() {
+    private int soBiAn;
+    private int maxLuot;
+
+    public Game(int maxLuot) {
+        this.soBiAn = (int)(Math.random() * 100) + 1;
+        this.maxLuot = maxLuot;
+    }
+
+    public void PlayGame(Player player) {
         Scanner sth = new Scanner(System.in);
-        int soBiAn = (int)(Math.random() * 100) + 1;
-        int maxLuot = 10;
         int luot, soDoan = 0;
 
         for (luot = 0; luot < maxLuot; luot++) {
@@ -15,10 +22,11 @@ public class Game {
             while (true) {
                 try {
                     soDoan = sth.nextInt();
+                    player.addSoLuotDoan(soDoan);
                     break;
                 } catch (InputMismatchException e) {
                     System.out.println("Vui long nhap mot so nguyen.");
-                    sth.next();
+                    sth.next(); 
                 }
             }
 
@@ -39,4 +47,3 @@ public class Game {
         sth.close();
     }
 }
-
